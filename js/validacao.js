@@ -4,6 +4,12 @@ export function valida(input) {
     if(validadores[tipoDeInput]) {
         validadores[tipoDeInput](input)
     }
+
+    if(input.validity.valid){
+        input.parentElement.classList.remove('input-container--invalido')
+    } else{
+        input.parentElement.classList.add('input-container--invalido')
+    }
 }
 const validadores = {
     dataNascimento:input => validaDataNascimento(input)
@@ -26,5 +32,4 @@ function maiorQue18(data){
     const dataMais18 = new Date(data.getUTCFullYear() + 18, data.getUTCMonth(), data.getUTCDate())
 
     return dataMais18 <= dataAtual
-
 }
